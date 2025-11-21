@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fidelis Plumbing</title>
+  <!-- Link the web app manifest for PWA installability -->
+  <link rel="manifest" href="manifest.json" />
+  <!-- Set a theme color to match the app bar -->
+  <meta name="theme-color" content="#0a2f15" />
+  <!-- Load Tailwind via CDN to enable the utility classes used by the approved code -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Custom animations matching the classes used in the original design -->
+  <style>
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .animate-fadeIn { animation: fadeIn 0.5s ease-in-out both; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-fadeUp { animation: fadeUp 0.5s ease-in-out both; }
+    .delay-75 { animation-delay: 75ms; }
+    .delay-100 { animation-delay: 100ms; }
+    .delay-150 { animation-delay: 150ms; }
+    .delay-200 { animation-delay: 200ms; }
+    @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    .animate-slideUp { animation: slideUp 0.3s ease-out both; }
+    @keyframes slideInRight { from { transform: translateX(100%); } to { transform: translateX(0); } }
+    .animate-slideInRight { animation: slideInRight 0.3s ease-out both; }
+  </style>
+</head>
+<body class="bg-stone-300">
+  <div id="root"></div>
+  <!-- Load the compiled application code as an ES module -->
+  <script type="module" src="app.js"></script>
+  <!-- Register a minimal service worker to enable PWA installability -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js').catch((err) => {
+          console.warn('Service worker registration failed', err);
+        });
+      });
+    }
+  </script>
+</body>
+</html>
